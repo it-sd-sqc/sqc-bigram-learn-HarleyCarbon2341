@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,6 +60,21 @@ class MainTest {
         () -> assertDoesNotThrow(() -> Main.main(new String[]{"./sample-texts/empty.txt"}))
     );
   }
+    // TODO: Create your test(s) below. /////////////////////////////////////////
+    @Test
+    void getId() {
+      Connection db = Main.createConnection();
+      Random aWord = new Random();
+      assertDoesNotThrow(
+              () -> {
+                assertTrue(aWord == null);
+                assertTrue(db == null);
+                assertTrue(db.isClosed());
+                db.close();
+              }
+      );
 
-  // TODO: Create your test(s) below. /////////////////////////////////////////
+    }
+
+
 }
