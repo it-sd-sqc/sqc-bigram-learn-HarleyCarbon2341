@@ -63,16 +63,14 @@ class MainTest {
     // TODO: Create your test(s) below. /////////////////////////////////////////
     @Test
     void getId() {
-      Connection db = Main.createConnection();
-      Random aWord = new Random();
-      assertDoesNotThrow(
-              () -> {
-                assertTrue(aWord == null);
-                assertTrue(db == null);
-                assertTrue(db.isClosed());
-                db.close();
-              }
-      );
+      assertDoesNotThrow(() -> {
+          Connection db = Main.createConnection();
+          assertNotNull(db);
+          int id = Main.getId(db, "'; DELETE FROM words; --");
+          int wordCount = Main.getWordCount(db);
+          assertEquals(0, wordCount);
+          db.close();
+      });
 
     }
 
